@@ -1,5 +1,5 @@
 template<typename T>
-Array<T>::Array(): _size(), _capacity(), _data() {}
+Array<T>::Array(): _size(0), _capacity(1), _data(std::make_unique<T[]>(1)) {}
 
 template<typename T>
 void Array<T>::resize(size_t new_capacity)
@@ -8,7 +8,7 @@ void Array<T>::resize(size_t new_capacity)
 
     size_t i = 0;
 
-    for(i = 0; i <= _size; ++i)
+    for(i = 0; i < _size; ++i)
     {
         new_data[i] = std::move(_data[i]);
     }
@@ -18,11 +18,10 @@ void Array<T>::resize(size_t new_capacity)
 }
 
 template<typename T>
-Array<T>::Array(Array&& other) noexcept: _size(other._size), _capacity(other._capacity), _data(other._data)
+Array<T>::Array(Array&& other) noexcept: _size(other._size), _capacity(other._capacity), _data(std::move(other._data))
 {
     other._size = 0;
-    other._capacity = 1;
-    other._data = nullptr;
+    other._capacity = 0;
 }
 
 template<typename T>
@@ -33,8 +32,8 @@ Array<T>& Array<T>::operator=(Array&& other) noexcept
         _size = other._size;
         _capacity = other._capacity;
         _data = std::move(other._data);
-        _size = 0;
-        _capacity = 1;
+        other._size = 0;
+        other._capacity = 0;
     }
 
     return *this;
@@ -65,7 +64,12 @@ void Array<T>::push_back(const T& t)
 template<typename T>
 T& Array<T>::operator[](int index)
 {
-    if(index >= _size || index + _size < 0)
+    if (index < 0)
+    {
+        index += _size;
+    }
+
+    if((index >= _size) || (index < 0))
     {
         throw std::out_of_range("Index is out of range");
     }
@@ -76,7 +80,12 @@ T& Array<T>::operator[](int index)
 template<typename T>
 const T& Array<T>::operator[](int index) const
 {
-    if(index >= _size || index + _size < 0)
+    if (index < 0)
+    {
+        index += _size;
+    }
+
+    if((index >= _size) || (index < 0))
     {
         throw std::out_of_range("Index is out of range");
     }
@@ -90,17 +99,17 @@ void Array<T>::remove(int index)
     size_t i = 0;
     if(index < 0)
     {
-        for(i = _size + index; _size; ++i)
-        {
-            _data[i] = std::move(_data[i + 1]);
-        }
+        index += _size;
     }
-    else
+
+    if (index < 0 || index >= _size)
     {
-        for(i = index; _size; ++i)
-        {
-            _data[i] = std::move(_data[i + 1]);
-        }
+        throw std::out_of_range("Index is out of range");
+    }
+
+    for(i = index; i < _size - 1; ++i)
+    {
+        _data[i] = std::move(_data[i + 1]);
     }
 
     --_size;

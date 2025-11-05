@@ -2,14 +2,14 @@ template<scalar T>
 void printFigureInfo(const Array<std::unique_ptr<Figure<T>>>& figures)
 {
     size_t i = 0;
-    for (i = 0; i <= figures.size(); ++i)
+    for (i = 0; i < figures.size(); ++i)
     {
-        std::cout << figures[i]->type() << "под номером" << i << "с вершинами: ";
+        std::cout << figures[i]->type() << " под номером " << i << " с вершинами: " << std::endl;
         figures[i]->printVershins();
         std::cout << std::endl;
         std::cout << "Геометрический центр: " << figures[i]->center() << std::endl;
         std::cout << "Площадь: " << figures[i]->area() << std::endl;
-        std::cout << "---------------------------------------------"; 
+        std::cout << "---------------------------------------------" << std::endl; 
     }
 }
 

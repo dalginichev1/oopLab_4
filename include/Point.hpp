@@ -17,7 +17,10 @@ class Point
         T y() const;
         bool operator==(const Point<T>& other);
         bool operator!=(const Point<T>& other);
-        friend std::ostream& operator<< <>(std::ostream& os, const Point<T>& point);
+        template <scalar U>
+        friend std::ostream& operator<<(std::ostream& os, const Point<T>& point);
 };
 
 #include "Point.ipp"
+template <scalar T>
+std::ostream& operator<<(std::ostream& os, const Point<T>& point);

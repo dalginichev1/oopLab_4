@@ -31,26 +31,32 @@ int main()
             case '1': {
                 auto figure = input_rectangle<double>();
                 figures.push_back(std::move(figure));
+                break;
             }
             case '2': {
                 auto figure = input_trapez<double>();
                 figures.push_back(std::move(figure));
+                break;
             }
             case '3': {
                 auto figure = input_rombus<double>();
                 figures.push_back(std::move(figure));
+                break;
             }
             case '4': {
                 printFigureInfo(figures);
+                break;
             }
             case '5': {
                 totalArea(figures);
+                break;
             }
             case '6': {
                 int index = 0;
                 std::cout << "Введите индекс фигуры" << std::endl;
                 std::cin >> index;
                 figures.remove(index);
+                break;
             }
             case '0': {
                 break;

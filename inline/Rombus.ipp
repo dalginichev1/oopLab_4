@@ -1,14 +1,14 @@
 template<scalar T>
 Rombus<T>::Rombus(Point<T> _p1, Point<T> _p2, Point<T> _p3, Point<T> _p4)
         : p1(std::make_unique<Point<T>>(_p1)),
-          p2(std::make_unique<Point<T>>(_p1)),
-          p3(std::make_unique<Point<T>>(_p1)),
-          p4(std::make_unique<Point<T>>(_p1)) {}
+          p2(std::make_unique<Point<T>>(_p2)),
+          p3(std::make_unique<Point<T>>(_p3)),
+          p4(std::make_unique<Point<T>>(_p4)) {}
 
 template<scalar T>
 std::string Rombus<T>::type() const
 {
-    return "ромб";
+    return "Ромб";
 }
 
 template<scalar T>
@@ -22,8 +22,8 @@ double Rombus<T>::area() const
 template<scalar T>
 Point<T> Rombus<T>::center() const
 {
-    double xcenter = (p1->x(), p2->x(), p3->x(), p4->x()) / 4;
-    double ycenter = (p1->y(), p2->y(), p3->y(), p4->y()) / 4;
+    double xcenter = (p1->x() + p2->x() + p3->x() + p4->x()) / 4;
+    double ycenter = (p1->y() + p2->y() + p3->y() + p4->y()) / 4;
     return Point<T>(xcenter, ycenter);
 }
 

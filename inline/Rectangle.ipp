@@ -16,13 +16,13 @@ double Rectangle<T>::area() const
 template<scalar T>
 std::string Rectangle<T>::type() const
 {
-    return "прямоугольник";
+    return "Прямоугольник";
 }
 
 template<scalar T>
 void Rectangle<T>::printVershins() const
 {
-    std::cout << "Вершины прямоугольника: " << *p1 << *p2 << *p3 << *p4 << std::endl;
+    std::cout << *p1 << *p2 << *p3 << *p4 << std::endl;
 }
 
 template<scalar T>

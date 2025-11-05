@@ -28,6 +28,6 @@ bool Point<T>::operator!=(const Point& other)
 template<scalar T>
 std::ostream& operator<<(std::ostream& os, const Point<T>& point)
 {
-    os << "(" << point._x << ", " << point._y << ")" << std::endl;
+    os << "(" << point.x() << ", " << point.y() << ")" << std::endl;
     return os;
 }
