@@ -69,8 +69,7 @@ int main() {
             int index = 0;
             std::cout << "Введите индекс фигуры" << std::endl;
             std::cin >> index;
-            if(figures.size() == 0)
-            {
+            if (figures.size() == 0) {
                 std::cout << "Фигур нет" << std::endl;
                 break;
             }

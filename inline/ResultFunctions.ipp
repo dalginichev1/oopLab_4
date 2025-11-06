@@ -1,8 +1,7 @@
 template <scalar T>
 void printFigureInfo(const Array<std::unique_ptr<Figure<T>>>& figures) {
     size_t i = 0;
-    if(figures.size() == 0)
-    {
+    if (figures.size() == 0) {
         std::cout << "Фигур нет" << std::endl;
         return;
     }
@@ -51,12 +50,9 @@ bool isTrapez(const Array<std::unique_ptr<Point<T>>>& points) {
     bool v1_parallel_v3 = std::abs(cross(v1, v3)) < 1e-9;
     bool v2_paralell_v4 = std::abs(cross(v2, v4)) < 1e-9;
 
-    if(v1_parallel_v3 && !v2_paralell_v4)
-    {
+    if (v1_parallel_v3 && !v2_paralell_v4) {
         return std::abs(mod_v2 - mod_v4) < 1e-9;
-    }
-    else if(!v1_parallel_v3 && v2_paralell_v4)
-    {
+    } else if (!v1_parallel_v3 && v2_paralell_v4) {
         return std::abs(mod_v1 - mod_v3) < 1e-9;
     }
 

@@ -12,7 +12,7 @@ std::string Trapez<T>::type() const {
 template <scalar T>
 double Trapez<T>::area() const {
     return std::abs(0.5 * (p1->x() * (p2->y() - p4->y()) + p2->x() * (p3->y() - p1->y()) +
-                  p3->x() * (p4->y() - p2->y()) + p4->x() * (p1->y() - p3->y())));
+                           p3->x() * (p4->y() - p2->y()) + p4->x() * (p1->y() - p3->y())));
 }
 
 template <scalar T>
