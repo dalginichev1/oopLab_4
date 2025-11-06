@@ -1,9 +1,10 @@
-#include <cmath>
-#include <memory>
+#include "Figure.hpp"
 
 #include <gtest/gtest.h>
 
-#include "Figure.hpp"
+#include <cmath>
+#include <memory>
+
 #include "Array.hpp"
 #include "Point.hpp"
 #include "Rectangle.hpp"
@@ -230,7 +231,7 @@ TEST(FigureTest, CrossTypeInequality) {
 }
 
 TEST(ValidationTest, IsRectValid) {
-    Array<std::unique_ptr<Point<double>>> points;
+    Array<std::shared_ptr<Point<double>>> points;
     points.push_back(std::make_unique<Point<double>>(0, 0));
     points.push_back(std::make_unique<Point<double>>(0, 2));
     points.push_back(std::make_unique<Point<double>>(2, 2));
@@ -240,7 +241,7 @@ TEST(ValidationTest, IsRectValid) {
 }
 
 TEST(ValidationTest, IsRectInvalid) {
-    Array<std::unique_ptr<Point<double>>> points;
+    Array<std::shared_ptr<Point<double>>> points;
     points.push_back(std::make_unique<Point<double>>(0, 0));
     points.push_back(std::make_unique<Point<double>>(1, 2));
     points.push_back(std::make_unique<Point<double>>(3, 3));
@@ -250,7 +251,7 @@ TEST(ValidationTest, IsRectInvalid) {
 }
 
 TEST(ValidationTest, IsRectNotEnoughPoints) {
-    Array<std::unique_ptr<Point<double>>> points;
+    Array<std::shared_ptr<Point<double>>> points;
     points.push_back(std::make_unique<Point<double>>(0, 0));
     points.push_back(std::make_unique<Point<double>>(0, 2));
     points.push_back(std::make_unique<Point<double>>(2, 2));

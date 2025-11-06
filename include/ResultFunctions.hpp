@@ -14,21 +14,21 @@ template <scalar T>
 double totalArea(const Array<Figure<T>>& figures);
 
 template <scalar T>
-std::unique_ptr<Figure<T>> input_rectangle();
+std::shared_ptr<Figure<T>> input_rectangle();
 
 template <scalar T>
-std::unique_ptr<Figure<T>> input_trapez();
+std::shared_ptr<Figure<T>> input_trapez();
 
 template <scalar T>
-std::unique_ptr<Figure<T>> input_rombus();
+std::shared_ptr<Figure<T>> input_rombus();
 
 template <scalar T>
-bool isRect(const Array<std::unique_ptr<Point<T>>>& points);
+bool isRect(const Array<std::shared_ptr<Point<T>>>& points);
 
 template <scalar T>
-bool isTrapez(const Array<std::unique_ptr<Point<T>>>& points);
+bool isTrapez(const Array<std::shared_ptr<Point<T>>>& points);
 
 template <scalar T>
-bool isRombus(const Array<std::unique_ptr<Point<T>>>& points);
+bool isRombus(const Array<std::shared_ptr<Point<T>>>& points);
 
 #include "ResultFunctions.ipp"

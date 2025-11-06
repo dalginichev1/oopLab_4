@@ -9,7 +9,7 @@
 #include "Trapez.hpp"
 
 int main() {
-    Array<std::unique_ptr<Figure<double>>> figures;
+    Array<std::shared_ptr<Figure<double>>> figures;
 
     char choice;
 

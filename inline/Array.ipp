@@ -4,7 +4,7 @@ Array<T>::Array() : _size(0), _capacity(1), _data(std::make_unique<T[]>(1)) {
 
 template <typename T>
 void Array<T>::resize(size_t new_capacity) {
-    std::unique_ptr<T[]> new_data = std::make_unique<T[]>(new_capacity);
+    std::shared_ptr<T[]> new_data = std::make_unique<T[]>(new_capacity);
 
     size_t i = 0;
 
@@ -14,6 +14,16 @@ void Array<T>::resize(size_t new_capacity) {
 
     _data = std::move(new_data);
     _capacity = new_capacity;
+}
+
+template <typename T>
+Array<T>::Array(const Array& other) : _size(other._size), _capacity(other._capacity) {
+    std::shared_ptr<T[]> new_data = std::make_unique<T>(_capacity);
+
+    size_t i = 0;
+    for (i = 0; i < _size; ++i) {
+        new_data[i] = other.data[i];
+    }
 }
 
 template <typename T>

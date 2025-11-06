@@ -1,5 +1,5 @@
 template <scalar T>
-void printFigureInfo(const Array<std::unique_ptr<Figure<T>>>& figures) {
+void printFigureInfo(const Array<std::shared_ptr<Figure<T>>>& figures) {
     size_t i = 0;
     if (figures.size() == 0) {
         std::cout << "Фигур нет" << std::endl;
@@ -15,7 +15,7 @@ void printFigureInfo(const Array<std::unique_ptr<Figure<T>>>& figures) {
 }
 
 template <scalar T>
-bool isRect(const Array<std::unique_ptr<Point<T>>>& points) {
+bool isRect(const Array<std::shared_ptr<Point<T>>>& points) {
     if (points.size() != 4)
         return false;
 
@@ -33,7 +33,7 @@ bool isRect(const Array<std::unique_ptr<Point<T>>>& points) {
 }
 
 template <scalar T>
-bool isTrapez(const Array<std::unique_ptr<Point<T>>>& points) {
+bool isTrapez(const Array<std::shared_ptr<Point<T>>>& points) {
     if (points.size() != 4)
         return false;
 
@@ -60,7 +60,7 @@ bool isTrapez(const Array<std::unique_ptr<Point<T>>>& points) {
 }
 
 template <scalar T>
-double totalArea(const Array<std::unique_ptr<Figure<T>>>& figures) {
+double totalArea(const Array<std::shared_ptr<Figure<T>>>& figures) {
     double result = 0;
     size_t i = 0;
     for (i = 0; i < figures.size(); ++i) {
@@ -71,13 +71,13 @@ double totalArea(const Array<std::unique_ptr<Figure<T>>>& figures) {
 }
 
 template <scalar T>
-std::unique_ptr<Figure<T>> input_rectangle() {
+std::shared_ptr<Figure<T>> input_rectangle() {
     std::cout << "Введите 4 точки прямогульника в формате x1 y1 x2 y2 x3 y3 x4 y4: ";
     T x1, x2, x3, x4, y1, y2, y3, y4;
 
     std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3 >> x4 >> y4;
 
-    Array<std::unique_ptr<Point<T>>> points;
+    Array<std::shared_ptr<Point<T>>> points;
     points.push_back(std::make_unique<Point<T>>(x1, y1));
     points.push_back(std::make_unique<Point<T>>(x2, y2));
     points.push_back(std::make_unique<Point<T>>(x3, y3));
@@ -92,12 +92,12 @@ std::unique_ptr<Figure<T>> input_rectangle() {
 }
 
 template <scalar T>
-std::unique_ptr<Figure<T>> input_trapez() {
+std::shared_ptr<Figure<T>> input_trapez() {
     std::cout << "Введите 4 точки трапеции в формате x1 y1 x2 y2 x3 y3 x4 y4: ";
     T x1, x2, x3, x4, y1, y2, y3, y4;
     std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3 >> x4 >> y4;
 
-    Array<std::unique_ptr<Point<T>>> points;
+    Array<std::shared_ptr<Point<T>>> points;
     points.push_back(std::make_unique<Point<T>>(x1, y1));
     points.push_back(std::make_unique<Point<T>>(x2, y2));
     points.push_back(std::make_unique<Point<T>>(x3, y3));
@@ -112,7 +112,7 @@ std::unique_ptr<Figure<T>> input_trapez() {
 }
 
 template <scalar T>
-bool isRombus(const Array<std::unique_ptr<Point<T>>>& points) {
+bool isRombus(const Array<std::shared_ptr<Point<T>>>& points) {
     if (points.size() != 4)
         return false;
 
@@ -134,12 +134,12 @@ bool isRombus(const Array<std::unique_ptr<Point<T>>>& points) {
 }
 
 template <scalar T>
-std::unique_ptr<Figure<T>> input_rombus() {
+std::shared_ptr<Figure<T>> input_rombus() {
     std::cout << "Введите 4 точки ромба в формате x1 y1 x2 y2 x3 y3 x4 y4: ";
     T x1, x2, x3, x4, y1, y2, y3, y4;
     std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3 >> x4 >> y4;
 
-    Array<std::unique_ptr<Point<T>>> points;
+    Array<std::shared_ptr<Point<T>>> points;
     points.push_back(std::make_unique<Point<T>>(x1, y1));
     points.push_back(std::make_unique<Point<T>>(x2, y2));
     points.push_back(std::make_unique<Point<T>>(x3, y3));
