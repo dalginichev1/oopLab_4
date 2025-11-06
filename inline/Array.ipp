@@ -60,7 +60,7 @@ T& Array<T>::operator[](int index) {
         index += _size;
     }
 
-    if ((index >= _size) || (index < 0)) {
+    if ((index >= _size)) {
         throw std::out_of_range("Index is out of range");
     }
 
@@ -73,7 +73,7 @@ const T& Array<T>::operator[](int index) const {
         index += _size;
     }
 
-    if ((index >= _size) || (index < 0)) {
+    if ((index >= _size)) {
         throw std::out_of_range("Index is out of range");
     }
 

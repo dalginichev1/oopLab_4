@@ -1,10 +1,14 @@
 template <scalar T>
 void printFigureInfo(const Array<std::unique_ptr<Figure<T>>>& figures) {
     size_t i = 0;
+    if(figures.size() == 0)
+    {
+        std::cout << "Фигур нет" << std::endl;
+        return;
+    }
     for (i = 0; i < figures.size(); ++i) {
         std::cout << figures[i]->type() << " под номером " << i << " с вершинами: " << std::endl;
         figures[i]->printVershins();
-        std::cout << std::endl;
         std::cout << "Геометрический центр: " << figures[i]->center() << std::endl;
         std::cout << "Площадь: " << figures[i]->area() << std::endl;
         std::cout << "---------------------------------------------" << std::endl;
@@ -37,20 +41,23 @@ bool isTrapez(const Array<std::unique_ptr<Point<T>>>& points) {
     Point<T> v1 = *points[1] - *points[0];
     Point<T> v2 = *points[2] - *points[1];
     Point<T> v3 = *points[3] - *points[2];
-    Point<T> v4 = *points[0] - *points[1];
+    Point<T> v4 = *points[0] - *points[3];
 
     double mod_v1 = std::sqrt(dot_prod(v1, v1));
     double mod_v2 = std::sqrt(dot_prod(v2, v2));
     double mod_v3 = std::sqrt(dot_prod(v3, v3));
     double mod_v4 = std::sqrt(dot_prod(v4, v4));
 
-    bool a1 = std::abs(cross(v1, v3)) < 1e-9;
-    bool a2 = std::abs(cross(v2, v4)) < 1e-9;
+    bool v1_parallel_v3 = std::abs(cross(v1, v3)) < 1e-9;
+    bool v2_paralell_v4 = std::abs(cross(v2, v4)) < 1e-9;
 
-    if ((a1) && (!a2) && (v2 == v4)) {
-        return a1;
-    } else if ((!a1) && (a2) && (v1 == v3)) {
-        return a2;
+    if(v1_parallel_v3 && !v2_paralell_v4)
+    {
+        return std::abs(mod_v2 - mod_v4) < 1e-9;
+    }
+    else if(!v1_parallel_v3 && v2_paralell_v4)
+    {
+        return std::abs(mod_v1 - mod_v3) < 1e-9;
     }
 
     return false;
@@ -116,7 +123,7 @@ bool isRombus(const Array<std::unique_ptr<Point<T>>>& points) {
     Point<T> v1 = *points[1] - *points[0];
     Point<T> v2 = *points[2] - *points[1];
     Point<T> v3 = *points[3] - *points[2];
-    Point<T> v4 = *points[0] - *points[1];
+    Point<T> v4 = *points[0] - *points[3];
 
     double v1_v2 = std::sqrt(std::pow(v1.x() - v2.x(), 2) + std::pow(v1.y() - v2.y(), 2));
     double v2_v3 = std::sqrt(std::pow(v2.x() - v3.x(), 2) + std::pow(v2.y() - v3.y(), 2));
@@ -143,7 +150,7 @@ std::unique_ptr<Figure<T>> input_rombus() {
     points.push_back(std::make_unique<Point<T>>(x4, y4));
 
     if (isRombus(points)) {
-        return std::make_unique<Trapez<T>>(Point<T>(x1, y1), Point<T>(x2, y2), Point<T>(x3, y3),
+        return std::make_unique<Rombus<T>>(Point<T>(x1, y1), Point<T>(x2, y2), Point<T>(x3, y3),
                                            Point<T>(x4, y4));
     } else {
         return nullptr;

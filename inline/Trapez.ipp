@@ -11,8 +11,8 @@ std::string Trapez<T>::type() const {
 
 template <scalar T>
 double Trapez<T>::area() const {
-    return 0.5 * (p1->x() * (p2->y() - p4->y()) + p2->x() * (p3->y() - p1->y()) +
-                  p3->x() * (p4->y() - p2->y()) + p4->x() * (p1->y() - p3->y()));
+    return std::abs(0.5 * (p1->x() * (p2->y() - p4->y()) + p2->x() * (p3->y() - p1->y()) +
+                  p3->x() * (p4->y() - p2->y()) + p4->x() * (p1->y() - p3->y())));
 }
 
 template <scalar T>
@@ -25,7 +25,7 @@ Point<T> Trapez<T>::center() const {
 
 template <scalar T>
 void Trapez<T>::printVershins() const {
-    std::cout << "Вершины трапеции: " << *p1 << *p2 << *p3 << *p4 << std::endl;
+    std::cout << *p1 << *p2 << *p3 << *p4 << std::endl;
 }
 
 template <scalar T>

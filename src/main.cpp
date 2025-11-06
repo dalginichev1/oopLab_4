@@ -61,13 +61,19 @@ int main() {
             break;
         }
         case '5': {
-            totalArea(figures);
+            double total_area = totalArea(figures);
+            std::cout << "Общая площадь всех фигур: " << total_area << std::endl;
             break;
         }
         case '6': {
             int index = 0;
             std::cout << "Введите индекс фигуры" << std::endl;
             std::cin >> index;
+            if(figures.size() == 0)
+            {
+                std::cout << "Фигур нет" << std::endl;
+                break;
+            }
             figures.remove(index);
             break;
         }

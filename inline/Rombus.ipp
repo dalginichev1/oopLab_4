@@ -25,7 +25,7 @@ Point<T> Rombus<T>::center() const {
 
 template <scalar T>
 void Rombus<T>::printVershins() const {
-    std::cout << "Вершины ромба: " << *p1 << *p2 << *p3 << *p4 << std::endl;
+    std::cout << *p1 << *p2 << *p3 << *p4 << std::endl;
 }
 
 template <scalar T>
