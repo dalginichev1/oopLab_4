@@ -18,7 +18,7 @@ class Array {
     void remove(int index);
     Array(const Array& other);
     Array(Array&& other) noexcept;
-    Array& operator=(const Array& other) = delete;
+    Array& operator=(const Array& other);
     Array& operator=(Array&& other) noexcept;
     T& operator[](int index);
     const T& operator[](int index) const;

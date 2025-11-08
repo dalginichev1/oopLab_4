@@ -46,6 +46,21 @@ Array<T>& Array<T>::operator=(Array&& other) noexcept {
     return *this;
 }
 
+template<typename T>
+Array<T>& Array<T>::operator=(const Array<T>& other)
+{
+    if (this != other)
+    {
+        delete _data;
+        _size = other._size;
+        _capacity = other._capacity;
+        _data = new T[_capacity];
+        std::copy(other._data, other._data + _size, _data);
+    }
+
+    return *this;
+}
+
 template <typename T>
 void Array<T>::push_back(T&& t) {
     if (_size >= _capacity) {
