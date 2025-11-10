@@ -9,9 +9,9 @@ class Array {
     size_t _size = 0;
     size_t _capacity = 1;
     void resize(size_t new_capacity);
+    static constexpr auto deleter = [](T* ptr) { delete[] ptr; };
 
-  public:
-    Array();
+    public : Array();
     ~Array() noexcept = default;
     void push_back(T&& t);
     void push_back(const T& t);

@@ -76,11 +76,8 @@ int main() {
             figures.remove(index);
             break;
         }
-        case '0': {
-            break;
         }
-        }
-    } while (choice != 0);
+    } while (choice != '0');
 
     return 0;
 }
