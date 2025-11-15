@@ -5,11 +5,10 @@
 template <typename T>
 class Array {
   private:
-    std::shared_ptr<T[]> _data;
     size_t _size = 0;
     size_t _capacity = 1;
+    std::shared_ptr<T[]> _data{new T[_capacity], std::default_delete<T[]>()};
     void resize(size_t new_capacity);
-    static constexpr auto deleter = [](T* ptr) { delete[] ptr; };
 
     public : Array();
     ~Array() noexcept = default;

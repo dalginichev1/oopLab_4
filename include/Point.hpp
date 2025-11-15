@@ -4,7 +4,7 @@
 #include <concepts>
 
 template <typename T>
-concept scalar = std::is_arithmetic<T>::value;
+concept scalar = std::is_integral<T>::value || std::is_floating_point<T>::value;
 
 template <scalar T>
 class Point {
